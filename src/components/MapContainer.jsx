@@ -1,15 +1,25 @@
 import React, { Component } from "react";
-import { Map, GoogleApiWrapper } from "google-maps-react";
+import { Map, Marker, InfoWindow, GoogleApiWrapper } from "google-maps-react";
+import { SearchBar } from "./SearchBar";
 
+const initialPosition = {
+  lat: 41.40649793217181,
+  lng: 2.174371444383683,
+};
 export class MapContainer extends Component {
   render() {
     return (
-      <Map
-        google={this.props.google}
-        zoom={14}
-        initialCenter={{ lat: 41.40649793217181, lng: 2.174371444383683 }}
-        style={{ width: "100%", height: "100%" }}
-      />
+      <div>
+        <SearchBar />
+        <Map
+          google={this.props.google}
+          zoom={14}
+          initialCenter={initialPosition}
+          style={{ width: "100%", height: "100%" }}
+        >
+          <Marker onClick={this.onMarkerClick} name={"current location"} />
+        </Map>
+      </div>
     );
   }
 }
