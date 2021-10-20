@@ -18,7 +18,9 @@ export const SearchBar = () => {
     setAddress(place);
     setCoordinates(latAndLng);
 
-    dispatch(markers(coordinates.lat, coordinates.lng));
+    const { lat, lng } = latAndLng;
+
+    dispatch(markers(lat, lng));
   };
 
   return (
@@ -32,7 +34,6 @@ export const SearchBar = () => {
           <div>
             <p>Latitude: {coordinates.lat}</p>
             <p>longitude: {coordinates.lng}</p>
-
             <input {...getInputProps({ placeholder: "Busca la dirección" })} />
             {loading ? <div>loading...</div> : null}
 
