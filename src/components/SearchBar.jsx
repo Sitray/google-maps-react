@@ -6,9 +6,18 @@ import PlacesAutoComplete, {
 
 export const SearchBar = () => {
   const [address, setAddress] = useState("");
-  const [coordinates, setCoordinates] = useState({ lat: "", lng: "" });
+  const [coordinates, setCoordinates] = useState({
+    lat: "41.40649793217181",
+    lng: "2.174371444383683",
+  });
 
-  const handleSelect = async () => {};
+  const handleSelect = async (place) => {
+    const result = await geocodeByAddress(place);
+    const latAndLng = await getLatLng(result[0]);
+    setAddress(place);
+    setCoordinates(latAndLng);
+  };
+
   return (
     <div>
       <PlacesAutoComplete
@@ -24,14 +33,14 @@ export const SearchBar = () => {
             <input {...getInputProps({ placeholder: "Busca la dirección" })} />
             {loading ? <div>loading...</div> : null}
 
-            {suggestions.map((suggestion) => {
+            {suggestions.map((suggestion, i) => {
               const style = {
                 backgroundColor: suggestion.active ? "#2596be" : " #fff",
               };
 
               return (
                 <div
-                  key={suggestion}
+                  key={i++}
                   {...getSuggestionItemProps(suggestion, { style })}
                 >
                   {suggestion.description}{" "}

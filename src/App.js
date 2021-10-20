@@ -2,7 +2,12 @@ import React from "react";
 import MapContainer from "./components/MapContainer.jsx";
 
 function App() {
-  return <MapContainer />;
+  return (
+    <>
+      {" "}
+      <MapContainer />
+    </>
+  );
 }
 
 export default App;
