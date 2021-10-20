@@ -1,21 +1,24 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+
 import PlacesAutoComplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
+import { markers } from "../actions/markers";
 
 export const SearchBar = () => {
   const [address, setAddress] = useState("");
-  const [coordinates, setCoordinates] = useState({
-    lat: "41.40649793217181",
-    lng: "2.174371444383683",
-  });
+  const [coordinates, setCoordinates] = useState({ lat: "", lng: "" });
+  const dispatch = useDispatch();
 
   const handleSelect = async (place) => {
     const result = await geocodeByAddress(place);
     const latAndLng = await getLatLng(result[0]);
     setAddress(place);
     setCoordinates(latAndLng);
+
+    dispatch(markers(coordinates.lat, coordinates.lng));
   };
 
   return (
