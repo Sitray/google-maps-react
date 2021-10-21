@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   withScriptjs,
   withGoogleMap,
@@ -7,12 +7,10 @@ import {
 } from "react-google-maps";
 import { useSelector } from "react-redux";
 
-const Map = () => {
-  const state = useSelector((state) => state.marker.initialState);
-  console.log(state);
+const Map = (props) => {
   const initialPosition = {
-    lat: state.latitude,
-    lng: state.longitude,
+    lat: 41.40649793217181,
+    lng: 2.174371444383683,
   };
 
   const { latitude, longitude } = useSelector((state) => state.marker);

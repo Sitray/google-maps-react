@@ -16,9 +16,7 @@ export const SearchBar = () => {
     const result = await geocodeByAddress(place);
     const latAndLng = await getLatLng(result[0]);
     setAddress(place);
-    setCoordinates(latAndLng);
-    console.log("address");
-    console.log(address);
+    //setCoordinates(latAndLng);
 
     const { lat, lng } = latAndLng;
 
@@ -34,9 +32,12 @@ export const SearchBar = () => {
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
-            <p>Latitude: {coordinates.lat}</p>
-            <p>longitude: {coordinates.lng}</p>
-            <input {...getInputProps({ placeholder: "Busca la dirección" })} />
+            <input
+              {...getInputProps({
+                placeholder: "Busca la dirección",
+                required: true,
+              })}
+            />
             {loading ? <div>loading...</div> : null}
 
             {suggestions.map((suggestion, i) => {
