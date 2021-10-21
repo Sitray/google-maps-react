@@ -21,7 +21,7 @@ export const SearchBar = () => {
 
     const { lat, lng } = latAndLng;
 
-    dispatch(markers(lat, lng));
+    dispatch(markers(getAaddress, lat, lng));
   };
 
   return (
