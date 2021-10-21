@@ -1,15 +1,10 @@
 import React from "react";
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-} from "react-google-maps";
+import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
 import { useSelector } from "react-redux";
 
 import { InfoWindowMarker } from "./InfoWindowMarker.jsx";
 
-const Map = (props) => {
+const Map = () => {
   const initialPosition = {
     lat: 41.40649793217181,
     lng: 2.174371444383683,

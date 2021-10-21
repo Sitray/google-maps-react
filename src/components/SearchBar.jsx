@@ -21,7 +21,45 @@ export const SearchBar = () => {
     const { lat, lng } = latAndLng;
 
     dispatch(markers(getAaddress, lat, lng));
+    setAddress("");
   };
+
+  const places = ({
+    getInputProps,
+    suggestions,
+    getSuggestionItemProps,
+    loading,
+  }) => (
+    <div>
+      <input
+        {...getInputProps({
+          placeholder: "Busca la dirección",
+          required: true,
+        })}
+      />
+      {loading && <div>loading...</div>}
+
+      {suggestions.map((suggestion, i) => {
+        const style = {
+          backgroundColor: suggestion.active ? "#2596be" : " #fff",
+        };
+
+        const regex = new RegExp(address, "gi");
+        const newText = suggestion.description.replace(
+          regex,
+          `<mark class="highlight">$&</mark>`
+        );
+
+        return (
+          <div
+            key={i++}
+            dangerouslySetInnerHTML={{ __html: newText }}
+            {...getSuggestionItemProps(suggestion, { style })}
+          />
+        );
+      })}
+    </div>
+  );
 
   return (
     <div>
@@ -29,33 +67,9 @@ export const SearchBar = () => {
         value={address}
         onChange={setAddress}
         onSelect={handleSelect}
+        highlightFirstSuggestion={true}
       >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
-            <input
-              {...getInputProps({
-                placeholder: "Busca la dirección",
-                required: true,
-              })}
-            />
-            {loading ? <div>loading...</div> : null}
-
-            {suggestions.map((suggestion, i) => {
-              const style = {
-                backgroundColor: suggestion.active ? "#2596be" : " #fff",
-              };
-
-              return (
-                <div
-                  key={i++}
-                  {...getSuggestionItemProps(suggestion, { style })}
-                >
-                  {suggestion.description}{" "}
-                </div>
-              );
-            })}
-          </div>
-        )}
+        {places}
       </PlacesAutoComplete>
     </div>
   );
