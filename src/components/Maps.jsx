@@ -11,21 +11,21 @@ const Map = () => {
     InitialAddress: "Barcelona, Spain",
   };
 
-  const { address, latitude, longitude } = useSelector((state) => state.marker);
-
-  const position = { lat: latitude, lng: longitude };
+  const state = useSelector((state) => state.marker);
 
   return (
-    <GoogleMap defaultZoom={10} defaultCenter={initialPosition}>
+    <GoogleMap defaultCenter={initialPosition} defaultZoom={10}>
       {" "}
-      {position.lat === undefined ? (
-        <InfoWindowMarker
-          position={initialPosition}
-          address={initialPosition.InitialAddress}
-        />
-      ) : (
-        <InfoWindowMarker position={position} address={address} />
-      )}
+      {state.map((marker, i = 0) => {
+        console.log(marker);
+        return (
+          <InfoWindowMarker
+            key={i++}
+            position={{ lat: marker.latitude, lng: marker.longitude }}
+            address={marker.address}
+          />
+        );
+      })}
     </GoogleMap>
   );
 };
