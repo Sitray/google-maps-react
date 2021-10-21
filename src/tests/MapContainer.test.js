@@ -4,9 +4,9 @@ import { shallow } from "enzyme";
 import { MapContainer } from "../components/MapContainer";
 
 describe("test on <MapContainer />", () => {
-  test("should display the component", () => {
-    const wrapper = shallow(<MapContainer />);
+  const wrapper = shallow(<MapContainer />);
 
+  test("should display the component", () => {
     expect(wrapper).toMatchSnapshot();
   });
 });
