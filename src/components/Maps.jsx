@@ -13,32 +13,26 @@ const Map = (props) => {
   const initialPosition = {
     lat: 41.40649793217181,
     lng: 2.174371444383683,
+    InitialAddress: "Barcelona, Spain",
   };
 
   const { address, latitude, longitude } = useSelector((state) => state.marker);
 
   const position = { lat: latitude, lng: longitude };
 
-  if (position.lat === undefined) {
-    return (
-      <GoogleMap defaultZoom={14} defaultCenter={initialPosition}>
-        {" "}
-        <Marker position={initialPosition} />
-      </GoogleMap>
-    );
-  } else {
-    return (
-      <div>
-        <GoogleMap
-          defaultZoom={14}
-          defaultCenter={initialPosition}
-          center={position}
-        >
-          <InfoWindowMarker position={position} address={address} />
-        </GoogleMap>
-      </div>
-    );
-  }
+  return (
+    <GoogleMap defaultZoom={10} defaultCenter={initialPosition}>
+      {" "}
+      {position.lat === undefined ? (
+        <InfoWindowMarker
+          position={initialPosition}
+          address={initialPosition.InitialAddress}
+        />
+      ) : (
+        <InfoWindowMarker position={position} address={address} />
+      )}
+    </GoogleMap>
+  );
 };
 
 export default withScriptjs(withGoogleMap(Map));

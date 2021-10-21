@@ -17,7 +17,6 @@ export const SearchBar = () => {
     const latAndLng = await getLatLng(result[0]);
     const getAaddress = result[0].formatted_address;
     setAddress(place);
-    console.log(getAaddress);
 
     const { lat, lng } = latAndLng;
 
