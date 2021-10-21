@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { InfoWindow, Marker } from "react-google-maps";
 
-export const InfoWindowMarker = ({ position }) => {
+export const InfoWindowMarker = ({ position, address }) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleToggle = () => {
     console.log("holaaa");
@@ -15,7 +15,7 @@ export const InfoWindowMarker = ({ position }) => {
       <Marker position={position} onClick={handleToggle}>
         {isOpen && (
           <InfoWindow onCloseClick={handleToggle}>
-            <p>hola</p>
+            <p>{address}</p>
           </InfoWindow>
         )}
       </Marker>

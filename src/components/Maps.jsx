@@ -15,7 +15,8 @@ const Map = (props) => {
     lng: 2.174371444383683,
   };
 
-  const { latitude, longitude } = useSelector((state) => state.marker);
+  const { address, latitude, longitude } = useSelector((state) => state.marker);
+
   const position = { lat: latitude, lng: longitude };
 
   if (position.lat === undefined) {
@@ -33,7 +34,7 @@ const Map = (props) => {
           defaultCenter={initialPosition}
           center={position}
         >
-          <InfoWindowMarker position={position} />
+          <InfoWindowMarker position={position} address={address} />
         </GoogleMap>
       </div>
     );
