@@ -3,9 +3,9 @@ import { MapContainer } from "./components/MapContainer.jsx";
 
 function App() {
   return (
-    <>
+    <div>
       <MapContainer />
-    </>
+    </div>
   );
 }
 

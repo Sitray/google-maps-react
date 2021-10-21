@@ -14,19 +14,21 @@ const Map = () => {
   const state = useSelector((state) => state.marker);
 
   return (
-    <GoogleMap defaultCenter={initialPosition} defaultZoom={10}>
-      {" "}
-      {state.map((marker, i = 0) => {
-        console.log(marker);
-        return (
-          <InfoWindowMarker
-            key={i++}
-            position={{ lat: marker.latitude, lng: marker.longitude }}
-            address={marker.address}
-          />
-        );
-      })}
-    </GoogleMap>
+    <div>
+      <GoogleMap defaultCenter={initialPosition} defaultZoom={10}>
+        {" "}
+        {state.map((marker, i = 0) => {
+          console.log(marker);
+          return (
+            <InfoWindowMarker
+              key={i++}
+              position={{ lat: marker.latitude, lng: marker.longitude }}
+              address={marker.address}
+            />
+          );
+        })}
+      </GoogleMap>
+    </div>
   );
 };
 
