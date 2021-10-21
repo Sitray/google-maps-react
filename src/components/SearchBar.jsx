@@ -9,14 +9,15 @@ import { markers } from "../actions/markers";
 
 export const SearchBar = () => {
   const [address, setAddress] = useState("");
-  const [coordinates, setCoordinates] = useState({ lat: "", lng: "" });
+
   const dispatch = useDispatch();
 
   const handleSelect = async (place) => {
     const result = await geocodeByAddress(place);
     const latAndLng = await getLatLng(result[0]);
+    const getAaddress = result[0].formatted_address;
     setAddress(place);
-    //setCoordinates(latAndLng);
+    console.log(getAaddress);
 
     const { lat, lng } = latAndLng;
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   withScriptjs,
   withGoogleMap,
@@ -6,6 +6,8 @@ import {
   Marker,
 } from "react-google-maps";
 import { useSelector } from "react-redux";
+
+import { InfoWindowMarker } from "./InfoWindowMarker.jsx";
 
 const Map = (props) => {
   const initialPosition = {
@@ -25,13 +27,15 @@ const Map = (props) => {
     );
   } else {
     return (
-      <GoogleMap
-        defaultZoom={14}
-        defaultCenter={initialPosition}
-        center={position}
-      >
-        <Marker position={position} />
-      </GoogleMap>
+      <div>
+        <GoogleMap
+          defaultZoom={14}
+          defaultCenter={initialPosition}
+          center={position}
+        >
+          <InfoWindowMarker position={position} />
+        </GoogleMap>
+      </div>
     );
   }
 };
