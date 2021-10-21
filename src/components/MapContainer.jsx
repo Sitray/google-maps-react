@@ -1,29 +1,26 @@
 import React, { Component } from "react";
-import { Map, Marker, InfoWindow, GoogleApiWrapper } from "google-maps-react";
+import { useSelector } from "react-redux";
+
+import Map from "./Maps";
 import { SearchBar } from "./SearchBar";
 
-const initialPosition = {
-  lat: 41.40649793217181,
-  lng: 2.174371444383683,
-};
+const mapUrl = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDMqBNkJ3WeEsG7rt__v7W1If9mUPcxkNo`;
 export class MapContainer extends Component {
+  // const state = useSelector((state) => state);
+  // console.log(state + "estado");
   render() {
     return (
       <div>
-        <SearchBar />
         <Map
-          google={this.props.google}
-          zoom={14}
-          initialCenter={initialPosition}
-          style={{ width: "100%", height: "100%" }}
-        >
-          <Marker onClick={this.onMarkerClick} name={"current location"} />
-        </Map>
+          googleMapURL={mapUrl}
+          containerElement={<div style={{ height: "400px" }} />}
+          mapElement={<div style={{ height: "400px" }} />}
+          loadingElement={<p>cargando</p>}
+        />
+        <div>
+          <SearchBar />
+        </div>
       </div>
     );
   }
 }
-
-export default GoogleApiWrapper({
-  apiKey: "AIzaSyDMqBNkJ3WeEsG7rt__v7W1If9mUPcxkNo",
-})(MapContainer);
