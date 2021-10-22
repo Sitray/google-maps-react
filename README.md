@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 En el proyecto puedes ejecutar:
 
-Primero ### `npm install` para instalar el node modules y así tener todas las dependencias
+Primero `npm install` para instalar el node modules y así tener todas las dependencias
 
 luego para ejecutar el proyecto:
 
