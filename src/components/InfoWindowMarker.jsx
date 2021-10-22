@@ -8,6 +8,7 @@ export const InfoWindowMarker = ({ position, address, i }) => {
   const handleToggle = () => {
     isOpen ? setIsOpen(false) : setIsOpen(true);
   };
+
   return (
     <div key={i}>
       <Marker position={position} onClick={handleToggle}>

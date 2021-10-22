@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import Map from "./Maps";
 import { SearchBar } from "./SearchBar";
-import mapContainer from "./mapContainer.css";
 
 const mapUrl = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDMqBNkJ3WeEsG7rt__v7W1If9mUPcxkNo`;
 export class MapContainer extends Component {

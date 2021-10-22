@@ -7,21 +7,26 @@ import PlacesAutoComplete, {
 } from "react-places-autocomplete";
 import { markers } from "../actions/markers";
 
+import CircularProgress from "@mui/material/CircularProgress";
+
 export const SearchBar = () => {
   const [address, setAddress] = useState("");
 
   const dispatch = useDispatch();
 
   const handleSelect = async (place) => {
-    const result = await geocodeByAddress(place);
-    const latAndLng = await getLatLng(result[0]);
-    const getAaddress = result[0].formatted_address;
-    setAddress(place);
+    if (address) {
+      const result = await geocodeByAddress(place);
+      const latAndLng = await getLatLng(result[0]);
+      const getAaddress = result[0].formatted_address;
 
-    const { lat, lng } = latAndLng;
+      setAddress(place);
 
-    dispatch(markers(getAaddress, lat, lng));
-    setAddress("");
+      const { lat, lng } = latAndLng;
+
+      dispatch(markers(getAaddress, lat, lng));
+      setAddress("");
+    }
   };
 
   const styles = {
@@ -51,7 +56,7 @@ export const SearchBar = () => {
           required: true,
         })}
       />
-      {loading && <div>loading...</div>}
+      {loading && <div styles={styles}>{<CircularProgress />}</div>}
 
       {suggestions.map((suggestion, i) => {
         const style = {
@@ -66,6 +71,7 @@ export const SearchBar = () => {
           fontSize: `14px`,
           outline: `none`,
           textOverflow: `ellipses`,
+          cursor: "pointer",
         };
 
         const regex = new RegExp(address, "gi");

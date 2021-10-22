@@ -15,10 +15,9 @@ const Map = () => {
 
   return (
     <div>
-      <GoogleMap defaultCenter={initialPosition} defaultZoom={10}>
+      <GoogleMap defaultCenter={initialPosition} defaultZoom={12}>
         {" "}
         {state.map((marker, i = 0) => {
-          console.log(marker);
           return (
             <InfoWindowMarker
               key={i++}
